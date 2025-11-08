@@ -28,30 +28,33 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 px-4 bg-background">
+    <div className="min-h-screen bg-background py-12 px-4">
       <div className="container mx-auto max-w-4xl">
         <header className="text-center mb-12">
-          <div className="inline-block mb-4">
-            <div className="w-16 h-16 mx-auto rounded-lg bg-primary flex items-center justify-center">
-              <svg className="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Malaria Cell Detection
           </h1>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-            AI-powered analysis to detect malaria infection in cell samples
+          <p className="text-muted-foreground text-lg">
+            Upload an image of a cell to predict if it is infected with malaria.
           </p>
         </header>
 
-        <main className="space-y-8">
+        <main className="space-y-6">
+          <div className="text-center mb-6">
+            <p className="text-foreground">Choose an image...</p>
+          </div>
+
           <ImageUpload
             onImageSelect={handleImageSelect}
             selectedImage={selectedImage}
             onClear={handleClear}
           />
+
+          {selectedImage && (
+            <div className="text-center text-muted-foreground">
+              <p>Uploaded Image.</p>
+            </div>
+          )}
 
           <ClassificationResult
             isClassifying={isClassifying}
